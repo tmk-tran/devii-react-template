@@ -1,75 +1,76 @@
-# React + TypeScript + Vite
+# Devii React Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A reusable React template for quickly building applications with Devii,
+preconfigured with Apollo Client and GraphQL.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Environment Variables](#environment-variables)
+  - [Development](#development)
+- [Apollo Client Integration](#apollo-client-integration)
+- [Built With](#built-with)
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js 22
+- npm
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Installation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Install the project dependencies:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### Environment Variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Copy `.env.example` to `.env` and configure your Devii connection.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+cp .env.example .env
 ```
+
+### Development
+
+Start the development server:
+
+```sh
+npm run dev
+```
+
+## Apollo Client Integration
+
+This template comes with Apollo Client and GraphQL preinstalled and configured for use with Devii.
+
+The Apollo Client configuration:
+
+- Uses the Devii API URL defined in the environment variables
+- Reads the access token from `localStorage`
+- Attaches the token to the `Authorization` header for authenticated requests
+- Uses Apollo’s `InMemoryCache` for client-side caching
+
+👉 [View Apollo Client configuration](src/api/apolloClient.ts)
+
+Apollo Client and GraphQL are installed with:
+
+```sh
+npm install @apollo/client graphql
+```
+
+For additional information, see the [Apollo Client Documentation](https://www.apollographql.com/docs/react).
+
+## Built With
+
+This template is built with:
+
+- React
+- TypeScript
+- Vite
+- Apollo Client
+- GraphQL
