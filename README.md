@@ -11,6 +11,7 @@ preconfigured with Apollo Client and GraphQL.
   - [Environment Variables](#environment-variables)
   - [Development](#development)
 - [Apollo Client Integration](#apollo-client-integration)
+- [Devii Authentication](#devii-authentication)
 - [Built With](#built-with)
 
 ## Getting Started
@@ -35,6 +36,11 @@ Copy `.env.example` to `.env` and configure your Devii connection.
 ```sh
 cp .env.example .env
 ```
+
+The following environment variables are required:
+
+- VITE_DEVII_API_URL — Devii API base URL
+- VITE_DEVII_TENANT_ID — Devii tenant ID
 
 ### Development
 
@@ -64,6 +70,16 @@ npm install @apollo/client graphql
 ```
 
 For additional information, see the [Apollo Client Documentation](https://www.apollographql.com/docs/react).
+
+## Devii Authentication
+
+This template includes a basic authentication flow for connecting to Devii.
+
+Users sign in with their Devii username and password. The configured tenant ID is read from the environment variables and sent with the login request.
+
+After successful authentication, the returned access token is stored in `localStorage` and automatically included in authenticated Apollo Client requests.
+
+The template also includes logout functionality that removes the stored access token.
 
 ## Built With
 

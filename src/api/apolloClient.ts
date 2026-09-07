@@ -5,15 +5,15 @@ import {
   HttpLink,
 } from "@apollo/client";
 import { SetContextLink } from "@apollo/client/link/context";
-
-const baseUrl = import.meta.env.VITE_DEVII_API_URL; // Devii API URL
+import { deviiConfig } from "../config";
+import { getAccessToken } from "./tokenStorage";
 
 const httpLink = new HttpLink({
-  uri: baseUrl, // GraphQL endpoint
+  uri: deviiConfig.apiUrl, // GraphQL endpoint
 });
 
 const authLink = new SetContextLink((prevContext) => {
-  const token = localStorage.getItem("access_token"); // Read latest token for each request
+  const token = getAccessToken(); // Read latest token for each request
 
   return {
     headers: {
