@@ -1,0 +1,10 @@
+.available-queries {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.available-queries ul {
+  margin-top: 0;
+  text-align: left;
+}

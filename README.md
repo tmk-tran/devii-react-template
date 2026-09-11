@@ -12,6 +12,7 @@ preconfigured with Apollo Client and GraphQL.
   - [Development](#development)
 - [Apollo Client Integration](#apollo-client-integration)
 - [Devii Authentication](#devii-authentication)
+- [Example GraphQL Query](#example-graphql-query)
 - [Built With](#built-with)
 
 ## Getting Started
@@ -80,6 +81,42 @@ Users sign in with their Devii username and password. The configured tenant ID i
 After successful authentication, the returned access token is stored in `localStorage` and automatically included in authenticated Apollo Client requests.
 
 The template also includes logout functionality that removes the stored access token.
+
+## Example GraphQL Query
+
+After authentication, the template runs an example GraphQL introspection query using Apollo Client.
+
+The query retrieves the available queries exposed by your Devii GraphQL API:
+
+```graphql
+query GetAvailableQueries {
+  __schema {
+    queryType {
+      fields {
+        name
+      }
+    }
+  }
+}
+```
+
+The results are displayed under Available Queries after signing in.
+
+This example demonstrates how to:
+
+- Execute an authenticated GraphQL query with Apollo Client
+- Access your Devii GraphQL schema
+- Display query results in a React component
+
+The example query is located at:
+
+[`src/graphql/queries/getAvailableQueries.ts`](src/graphql/queries/getAvailableQueries.ts)
+
+The component that executes and displays the query is located at:
+
+[`src/components/AvailableQueries.tsx`](src/components/AvailableQueries.tsx)⁠￼
+
+Use this example as a starting point for creating queries against your own connected data.
 
 ## Built With
 

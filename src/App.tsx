@@ -8,6 +8,7 @@ import LogoutButton from "./components/LogoutButton";
 import deviiLogo from "./assets/devii-logo500.png";
 
 import "./App.css";
+import AvailableQueries from "./components/AvailableQueries";
 
 function App() {
   const [hasAuthData, setHasAuthData] = useState(
@@ -51,7 +52,12 @@ function App() {
           >
             Connect to your data
           </a>
+
           <LogoutButton onLogout={() => setHasAuthData(false)} />
+
+          <hr className="divider" />
+
+          <AvailableQueries />
         </div>
       )}
     </main>

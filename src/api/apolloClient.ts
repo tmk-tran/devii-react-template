@@ -9,7 +9,7 @@ import { deviiConfig } from "../config";
 import { getAccessToken } from "./tokenStorage";
 
 const httpLink = new HttpLink({
-  uri: deviiConfig.apiUrl, // GraphQL endpoint
+  uri: `${deviiConfig.apiUrl}/query`, // GraphQL endpoint
 });
 
 const authLink = new SetContextLink((prevContext) => {
