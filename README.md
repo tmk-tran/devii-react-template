@@ -13,6 +13,7 @@ preconfigured with Apollo Client and GraphQL.
 - [Apollo Client Integration](#apollo-client-integration)
 - [Devii Authentication](#devii-authentication)
 - [Example GraphQL Query](#example-graphql-query)
+- [Material UI](#material-ui)
 - [Built With](#built-with)
 
 ## Getting Started
@@ -118,6 +119,20 @@ The component that executes and displays the query is located at:
 
 Use this example as a starting point for creating queries against your own connected data.
 
+## Material UI
+
+This template includes Material UI (MUI) for building and styling application components.
+
+MUI and its required Emotion dependencies can be installed with:
+
+```sh
+npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
+```
+
+MUI will be available as an optional feature when generating a project with the Devii CLI.
+
+For additional information, see the [⁠Material UI Documentation](https://mui.com/material-ui/getting-started/)
+
 ## Built With
 
 This template is built with:
@@ -127,3 +142,4 @@ This template is built with:
 - Vite
 - Apollo Client
 - GraphQL
+- Material UI (MUI)

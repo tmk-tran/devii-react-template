@@ -1,10 +1,9 @@
 import { useState, type SyntheticEvent } from "react";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
 import { loginToDevii } from "../api/auth";
 import { setAccessToken } from "../api/tokenStorage";
 import { deviiConfig } from "../config";
-
-import "./LoginForm.css";
 
 interface LoginFormProps {
   onLoginSuccess: () => void; // Notify parent after successful authentication
@@ -51,36 +50,37 @@ const LoginForm = ({ onLoginSuccess }: LoginFormProps) => {
 
   return (
     <>
-      <form onSubmit={handleLogin}>
-        {error && <p className="error-message">{error}</p>}
-        {loading && <p>Signing in...</p>}
+      <Box component="form" onSubmit={handleLogin}>
+        {error && <Typography color="error">{error}</Typography>}
+        {loading && <Typography>Signing in...</Typography>}
         {!loading && (
           <>
-            <p>
+            <Typography>
               Sign in to your Devii account to start querying your GraphQL API.
-            </p>
-            <div className="form-container">
-              <label htmlFor="login">Username</label>
-              <input
-                id="login"
-                type="text"
+            </Typography>
+
+            <Stack spacing={3} sx={{ mt: 6 }}>
+              <TextField
+                label="Username"
                 value={login}
                 onChange={(e) => setLogin(e.target.value)}
                 required
               />
-              <label htmlFor="password">Password</label>
-              <input
-                id="password"
+
+              <TextField
+                label="Password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <button type="submit">Login</button>
-            </div>
+              <Button type="submit" variant="contained">
+                Login
+              </Button>
+            </Stack>
           </>
         )}
-      </form>
+      </Box>
     </>
   );
 };

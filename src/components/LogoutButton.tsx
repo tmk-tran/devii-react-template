@@ -1,5 +1,6 @@
 import { apolloClient } from "../api/apolloClient";
 import { clearAccessToken } from "../api/tokenStorage";
+import { Button } from "@mui/material";
 
 interface LogoutButtonProps {
   onLogout: () => void;
@@ -12,7 +13,11 @@ const LogoutButton = ({ onLogout }: LogoutButtonProps) => {
     onLogout();
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return (
+    <Button variant="contained" onClick={handleLogout}>
+      Logout
+    </Button>
+  );
 };
 
 export default LogoutButton;

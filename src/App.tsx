@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { Box, Divider, Link, Stack, Typography } from "@mui/material";
+
 import { configError } from "./config";
 import { getAccessToken } from "./api/tokenStorage";
 import LoginForm from "./components/LoginForm";
@@ -7,7 +9,6 @@ import LogoutButton from "./components/LogoutButton";
 
 import deviiLogo from "./assets/devii-logo500.png";
 
-import "./App.css";
 import AvailableQueries from "./components/AvailableQueries";
 
 function App() {
@@ -17,50 +18,89 @@ function App() {
 
   if (configError) {
     return (
-      <main className="app">
-        <h1>Devii React Template</h1>
+      <Box component="main">
+        <Typography variant="h4" component="h1">
+          Devii React Template
+        </Typography>
 
-        <p className="error-message">{configError}</p>
-      </main>
+        <Typography color="error">{configError}</Typography>
+      </Box>
     );
   }
 
   return (
-    <main className="app">
-      <div className="app-title-row">
-        <div className="app-logo-container">
-          <img src={deviiLogo} alt="Devii" className="app-logo" />
-        </div>
+    <Box
+      component="main"
+      sx={{
+        textAlign: "center",
+        p: 4,
+        width: "100%",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {/* Logo/title row */}
+      <Stack
+        direction="row"
+        spacing={1}
+        sx={{
+          alignItems: "center",
+          mb: 5,
+        }}
+      >
+        <Stack
+          sx={{
+            p: "0.5rem 0.75rem",
+            borderRadius: 2,
+            bgcolor: (theme) =>
+              theme.palette.mode === "light" ? "#060A2D" : "transparent",
+          }}
+        >
+          <Box
+            component="img"
+            src={deviiLogo}
+            alt="Devii"
+            sx={{
+              width: 180,
+            }}
+          />
+        </Stack>
 
-        <h1>React Template</h1>
-      </div>
+        <Typography variant="h4" component="h1">
+          React Template
+        </Typography>
+      </Stack>
 
       {!hasAuthData ? (
         <LoginForm
           onLoginSuccess={() => setHasAuthData(true)} // Show authenticated UI after login
         />
       ) : (
-        <div className="form-container">
-          <p className="success-message">
+        <Stack direction="column" spacing={3}>
+          <Typography sx={{ color: "green", fontSize: 18 }}>
             Success! Your Devii API access token is stored in localStorage
-          </p>
-          <a
-            className="devii-docs-link"
+          </Typography>
+
+          <Link
             href="https://docs.devii.io/docs/category/connect-to-your-data"
             target="_blank"
             rel="noopener noreferrer"
+            color="info"
           >
             Connect to your data
-          </a>
+          </Link>
 
           <LogoutButton onLogout={() => setHasAuthData(false)} />
 
-          <hr className="divider" />
+          <Divider sx={{ bgcolor: "gray" }} />
 
           <AvailableQueries />
-        </div>
+        </Stack>
       )}
-    </main>
+    </Box>
   );
 }
 

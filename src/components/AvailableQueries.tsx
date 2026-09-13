@@ -2,17 +2,19 @@ import { useQuery } from "@apollo/client/react";
 
 import { GET_AVAILABLE_QUERIES } from "../graphql/queries/getAvailableQueries";
 
-import "./AvailableQueries.css";
+import { Box, Typography } from "@mui/material";
 
 const AvailableQueries = () => {
   const { data, loading, error } = useQuery(GET_AVAILABLE_QUERIES);
 
   if (loading) {
-    return <p>Loading available queries...</p>;
+    return <Typography>Loading available queries...</Typography>;
   }
 
   if (error) {
-    return <p>Unable to load available queries.</p>;
+    return (
+      <Typography color="error">Unable to load available queries.</Typography>
+    );
   }
 
   const availableQueries =
@@ -21,15 +23,34 @@ const AvailableQueries = () => {
     ) ?? [];
 
   return (
-    <section className="available-queries">
-      <h2>Available Queries</h2>
+    <Box
+      component="section"
+      sx={{
+        border: 1,
+        borderColor: "divider",
+        borderRadius: 1,
+        bgcolor: "background.paper",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        p: 2,
+      }}
+    >
+      <Typography variant="h6" component="h2">
+        Available Queries
+      </Typography>
 
-      <ul>
+      <Box
+        component="ul"
+        sx={{
+          textAlign: "left",
+        }}
+      >
         {availableQueries.map((query: string) => (
           <li key={query}>{query}</li>
         ))}
-      </ul>
-    </section>
+      </Box>
+    </Box>
   );
 };
 
